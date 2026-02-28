@@ -3,6 +3,59 @@ import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
+/// A widget that insets its child with sufficient padding to avoid intrusions
+/// by the operating system.
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=lkF0TQJO0bA}
+///
+/// When a [minimum] padding is specified, the greater of the minimum padding
+/// or the safe area padding will be applied.
+///
+/// When a [baseMinimum] padding is specified, the padding already applied by
+/// ancestor [SafeArea] widgets is taken into account. The greater of the
+/// [baseMinimum] padding (minus any ancestor padding) or the safe area padding
+/// will be applied. This prevents padding duplication when [SafeArea]
+/// widgets are nested.
+///
+/// {@tool dartpad}
+/// This example shows how `SafeArea` can apply padding within a mobile device's
+/// screen to make the relevant content completely visible.
+///
+/// ** See code in examples/api/lib/widgets/safe_area/safe_area.0.dart **
+/// {@end-tool}
+///
+/// {@tool snippet}
+///
+/// This example creates a blue box containing text that is sufficiently padded
+/// to avoid intrusions by the operating system.
+///
+/// ```dart
+/// SafeArea(
+///   child: Container(
+///     constraints: const BoxConstraints.expand(),
+///     alignment: Alignment.center,
+///     color: Colors.blue,
+///     child: const Text('Hello, World!'),
+///   ),
+/// )
+/// ```
+/// {@end-tool}
+///
+/// ### [MediaQuery] impact
+///
+/// The padding on the [MediaQuery] for the [child] will be suitably adjusted
+/// to zero out any sides that were avoided by this widget.
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=ceCo8U0XHqw}
+///
+/// See also:
+///
+///  * [SliverSafeArea], for insetting slivers to avoid operating system
+///    intrusions.
+///  * [Padding], for insetting widgets in general.
+///  * [MediaQuery], from which the view padding is obtained.
+///  * [dart:ui.FlutterView.padding], which reports the padding from the operating
+///    system.
 class SafeArea extends StatelessWidget {
   /// Creates a widget that avoids operating system interfaces.
   const SafeArea({
