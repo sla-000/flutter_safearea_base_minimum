@@ -52,4 +52,4 @@ class NestedWidget extends StatelessWidget {
 }
 ```
 
-This ensures that Flutter UI components constructed with `SafeArea` can remain modular, cleanly composable, and responsive to any arbitrary parent wrapper tree.
+This ensures that Flutter UI components constructed with `SafeArea` or `SliverSafeArea` can remain modular, cleanly composable, and responsive to any arbitrary parent wrapper tree.
