@@ -175,6 +175,12 @@ class SafeArea extends StatelessWidget {
     properties.add(FlagProperty('top', value: top, ifTrue: 'avoid top padding'));
     properties.add(FlagProperty('right', value: right, ifTrue: 'avoid right padding'));
     properties.add(FlagProperty('bottom', value: bottom, ifTrue: 'avoid bottom padding'));
+    properties.add(
+      DiagnosticsProperty<EdgeInsets>('minimum', minimum, defaultValue: EdgeInsets.zero),
+    );
+    properties.add(
+      DiagnosticsProperty<EdgeInsets>('baseMinimum', baseMinimum, defaultValue: EdgeInsets.zero),
+    );
   }
 }
 
@@ -319,5 +325,11 @@ class SliverSafeArea extends StatelessWidget {
     properties.add(FlagProperty('top', value: top, ifTrue: 'avoid top padding'));
     properties.add(FlagProperty('right', value: right, ifTrue: 'avoid right padding'));
     properties.add(FlagProperty('bottom', value: bottom, ifTrue: 'avoid bottom padding'));
+    properties.add(
+      DiagnosticsProperty<EdgeInsets>('minimum', minimum, defaultValue: EdgeInsets.zero),
+    );
+    properties.add(
+      DiagnosticsProperty<EdgeInsets>('baseMinimum', baseMinimum, defaultValue: EdgeInsets.zero),
+    );
   }
 }
