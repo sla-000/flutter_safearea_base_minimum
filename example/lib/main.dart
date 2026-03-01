@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' hide SafeArea;
+import 'package:flutter/material.dart' hide SafeArea, SliverSafeArea;
 import 'package:safearea/safearea.dart';
 
 void main() {
@@ -55,19 +55,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -87,76 +74,44 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: SafeArea(
-        baseMinimum: EdgeInsets.all(8),
-        child: SafeArea(
-          baseMinimum: EdgeInsets.all(16),
-          child: SafeArea(
-            baseMinimum: EdgeInsets.all(32),
-            child: ColoredBox(
-              color: Colors.blue[100]!,
-              child: ListView(
-                padding: EdgeInsets.all(16),
-                // Column is also a layout widget. It takes a list of children and
-                // arranges them vertically. By default, it sizes itself to fit its
-                // children horizontally, and tries to be as tall as its parent.
-                //
-                // Column has various properties to control how it sizes itself and
-                // how it positions its children. Here we use mainAxisAlignment to
-                // center the children vertically; the main axis here is the vertical
-                // axis because Columns are vertical (the cross axis would be
-                // horizontal).
-                //
-                // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-                // action in the IDE, or press "p" in the console), to see the
-                // wireframe for each widget.
-                children: [
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  Text(
-                    '$_counter',
-                    style: Theme.of(context).textTheme.headlineMedium,
+        baseMinimum: EdgeInsets.all(32),
+        child: Row(
+          children: [
+            Expanded(
+              child: ColoredBox(
+                color: Colors.blue[100]!,
+                child: SafeArea(
+                  baseMinimum: EdgeInsets.all(64),
+                  child: ListView.builder(
+                    itemBuilder: (context, index) {
+                      return Text('Line $index');
+                    },
+                    itemCount: 100,
                   ),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                  const Text('You have pushed the button this many times:'),
-                ],
+                ),
               ),
             ),
-          ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: ColoredBox(
+                color: Colors.green[100]!,
+                child: CustomScrollView(
+                  slivers: [
+                    SliverSafeArea(
+                      baseMinimum: EdgeInsets.all(64),
+                      sliver: SliverList.builder(
+                        itemBuilder: (context, index) {
+                          return Text('Line $index');
+                        },
+                        itemCount: 100,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
